@@ -1,0 +1,17 @@
+<script>
+    jQuery(document).ready(function() {
+        jQuery('#pagination-control').find('a').bind('click', function (e) {
+            var link = jQuery(this);
+            jQuery('#main').load(link.attr('href'), {format: 'html'});
+            return false;
+        });
+    });
+
+    jQuery(document).ready(function () {
+            jQuery("#myTable").tablesorter();
+        }
+    );
+</script>
+<div id="pag-div">
+        <?php echo $this->render('pagination.ajax.phtml'); ?>
+</div>

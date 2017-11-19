@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="images/favicon.ico">
+
+    <script src="<?php echo $this->site; ?>/js/jquery-3.2.1.min.js"></script>
+    <script src="<?php echo $this->site; ?>/js/jquery.tablesorter.min.js"></script>
+
+    <link href="<?php echo $this->site; ?>/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo $this->site; ?>/css/bootstrap.min-3.3.7.css" rel="stylesheet">
+    <link href="<?php echo $this->site; ?>/css/style.css" rel="stylesheet">
+
+    <script src="<?php echo $this->site; ?>/js/informationalPortal.js"></script>
+    <script src="<?php echo $this->site; ?>/js/prototype.js"></script>
+    <title><?php echo $this->pageName; ?></title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">Information Portal</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/sign-in">Sign in</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/user-list">User list</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/user-information">Show user information</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/edit-profile-user">Edit information</a>
+                </li>
+                <li class="nav-item active">
+                    <?php
+                    // Применяем уже знакомый метод для проверки авторизации пользователя
+
+                    if (Zend_Auth::getInstance()->hasIdentity()) {
+
+                        $url = $this->url(array('controller'=>'auth', 'action'=>'logout'));
+
+                        // если пользователь авторизирован, показываем ему кнопку "Выход"
+                        echo '<a class="nav-link" href="/sign-in/log-out">Exit</a>';
+
+                    }
+                    ?>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+
+    <div id = "main">
+<?php echo $this->layout()->content; ?>
+</div>
+<footer class="footer">
+    <div class="container">
+        <span class="text-muted">Information portal</span>
+    </div>
+</footer>
+</body>
+</html>

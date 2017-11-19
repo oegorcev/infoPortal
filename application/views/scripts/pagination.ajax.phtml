@@ -1,0 +1,38 @@
+<div class="Show-form" id="Filter_form">
+    <?php echo $this->formFilterUser; ?>
+
+</div>
+    <h2 id = "table_name">Users:</h2>
+    <table class="table table-bordered tablesorter" id="myTable">
+
+        <thead>
+        <tr>
+            <?php
+            foreach ($this->tableColumns as $column) {
+                $s = '<th>' . $column . '</th>';
+
+                echo $s;
+            }
+            ?>
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+        foreach ($this->users as $person) {
+            $s = '<tr>';
+
+            foreach ($person as $field) {
+                $s .= '<td>' . $field . '</td>';
+            }
+
+            $s .= '</tr>';
+
+            echo $s;
+        }
+        ?>
+        </tbody>
+    </table>
+
+<?php echo $this->paginationControl($this->paginator, 'Elastic', 'paginationControl.ajax.phtml'); ?>
+
+
